@@ -3,12 +3,12 @@
 - name: Create new server instances and attaches them a network and passes metadata to the instance
   os_server:
    cloud: ospcloud
-   name: "{{ instance_name }}"
-   image: rhel-guest
-   meta: "group={{ group }},deployment_name={{ deployment }}"
+   name: "{{ osp_servers }}"
+   image: "{{ image }}"
+   meta: "group={{ group }},deployment_name={{ deployment_name }}"
       flavor: m2.small
-      security_groups: "{{ security_group_name }}"
-      key_name: ansible_ssh
+      security_groups: "{{ security_group }}"
+      key_name: "{{ key_name }}"
       wait: yes
       nics:
        - net-name: int_network
@@ -25,7 +25,7 @@
       cloud: ospcloud
       state: present
       reuse: yes
-      server: "{{ instance_name }}"
+      server: "{{ osp_servers }}"
       network: ext_network
       wait: true
       timeout: 180
