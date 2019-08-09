@@ -1,7 +1,15 @@
 - hosts: workstation
   gather_facts: true
+  become: yes
   roles:
   - name: osp-facts
+
+  tasks:
+   - name: copy repository
+     file:
+      src: ./three-tier-app.repo
+      dest: /etc/yum.repos.d/three-tier-app.repo
+      mode: 0644
 
 # Setup front-end load balancer tier
 - name: setup load-balancer tier
@@ -15,7 +23,7 @@
 - name: setup app tier
   hosts: apps
   become: yes
-  gather_facts: false
+# gather_facts: false
   roles:
     - {name: base-config, tags: base-config}
     - {name: app-tier, tags: [apps, tomcat]}
