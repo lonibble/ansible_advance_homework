@@ -4,5 +4,5 @@ image: rhel-guest
 key_name: ansible_ssh
 flavor: m2.small
 security_group_name: apps
-meta:
-  - { group: apps, deployment_name: QA}
+group: apps
+deployment_name: QA
