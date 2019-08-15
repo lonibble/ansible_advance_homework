@@ -1,5 +1,5 @@
 [all:vars]
-OSP_GUID=72bd
+OSP_GUID=4936
 
 [jumpbox]
 workstation ansible_host=workstation-"{{ OSP_GUID }}".rhpds.opentlc.com ansible_user=cloud-user ansible_ssh_private_key_file=~/.ssh/openstack.pem
